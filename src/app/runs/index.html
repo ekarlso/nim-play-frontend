@@ -1,5 +1,55 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <div class="content">
-    <div ui-ace></div>
+  <div flex-container="row" flex-gutter="24">
+    <div flex-item="1">
+      <lx-select ng-model="selectedVersion" placeholder="Select version" choices="versions" floating-label>
+        <lx-select-selected>
+          {{ $selected.name }}
+        </lx-select-selected>
+
+        <lx-select-choices>
+          {{ $choice.name }}
+        </lx-select-choices>
+        </lx-select>
+    </div>
+
+    <div flex-item="1">
+      <lx-select ng-model="selectedCC" placeholder="Select CC" choices="cc" floating-label>
+        <lx-select-selected>
+          {{ $selected.name }}
+        </lx-select-selected>
+
+        <lx-select-choices>
+            {{ $choice.name }}
+        </lx-select-choices>
+      </lx-select>
+    </div>
+  </div>
+
+  <div flex-container="row" flex-gutter="24">
+    <div flex-item>
+      <div ui-ace="{ onLoad : aceLoaded }" ng-model="input"></div>
+
+      <br/>
+      <div class="mb">
+        <button class="btn btn--m btn--green btn--raised" ng-model="input" lx-ripple ng-click="execRun()" ng-disabled="!input">Run IT!</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div flex-container="row" flex-gutter="24" ng-repeat="run in results" class="run">
+    <div flex-item>
+      <div class="card">
+        {{run.input}}
+      </div>
+    </div>
+
+    <div flex-item  ng-show="run.output">
+      <div class="card">
+        Output: {{run.output}}
+      </div>
+    </div>
+  </div>
 </div>
