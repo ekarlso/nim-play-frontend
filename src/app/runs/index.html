@@ -42,13 +42,21 @@
   <div flex-container="row" flex-gutter="24" ng-repeat="run in results" class="run">
     <div flex-item>
       <div class="card">
-        {{run.input}}
+        <div class="p+">
+          <span class="fs-headline">Input</span>
+
+          <pre>{{run.input}}</pre>
+        </div>
       </div>
     </div>
 
     <div flex-item  ng-show="run.output">
       <div class="card">
-        Output: {{run.output}}
+        <div class="p+">
+          <span class="fs-headline display-block">Output</span>
+
+          <pre>{{run.output}}</pre>
+        </div>
       </div>
     </div>
   </div>
