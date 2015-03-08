@@ -3,25 +3,43 @@
 
 class RunCtrl {
   constructor ($scope, $http) {
-    $scope.versions = [
-      {name: "devel"}
-    ];
+    $scope.versions = {
+      values: [
+        {name: "devel"},
+        {name: "0.10.2"}
+      ]
+    };
 
-    $scope.cc = [
-      {name: "tcc"}
-    ];
+    $scope.cc = {
+      values: [
+        {name: "tcc"},
+        {name: "ucc"}
+      ]
+    };
 
-    $scope.selectedVersion = $scope.versions[0];
-    $scope.selectedCC = $scope.cc[0];
+    $scope.selects = {
+      version: $scope.versions.values[0],
+      cc: $scope.cc.values[0]
+    }
+
+    $scope.opts = {
+      checks: true,
+      threads: false,
+      stackTrace: false
+    };
+
     $scope.input = undefined;
 
     $scope.results = [];
 
     $scope.execRun = function() {
+      var opts = $scope.opts;
+      opts.cc = $scope.selects.cc.name;
+
       var run = {
-        version: $scope.selectedVersion.name,
-        cc: $scope.selectedCC.name,
-        input: $scope.input
+        version: $scope.selects.version.name,
+        input: $scope.input,
+        compilerOptions: opts
       };
 
       $http.post('/runs', run).success(function(result) {

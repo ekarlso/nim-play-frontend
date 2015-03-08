@@ -2,8 +2,9 @@
 
 <div class="content">
   <div flex-container="row" flex-gutter="24">
+
     <div flex-item="2">
-      <lx-select ng-model="selectedVersion" placeholder="Select version" choices="versions" floating-label>
+      <lx-select ng-model="selects.version" placeholder="Select version" choices="versions.values" floating-label>
         <lx-select-selected>
           {{ $selected.name }}
         </lx-select-selected>
@@ -15,7 +16,7 @@
     </div>
 
     <div flex-item="2">
-      <lx-select ng-model="selectedCC" placeholder="Select CC" choices="cc" floating-label>
+      <lx-select ng-model="selects.cc" placeholder="Select CC" choices="cc.values" floating-label>
         <lx-select-selected>
           {{ $selected.name }}
         </lx-select-selected>
@@ -24,6 +25,23 @@
             {{ $choice.name }}
         </lx-select-choices>
       </lx-select>
+    </div>
+
+    <div flex-item="2">
+      <div class="switch">
+        <input type="checkbox" id="checks" class="switch__input" ng-model="opts.checks">
+        <label for="checks" class="switch__label">Checks</label>
+      </div>
+
+      <div class="switch">
+        <input type="checkbox" id="threads" class="switch__input" ng-model="opts.threads">
+        <label for="threads" class="switch__label">Threads</label>
+      </div>
+
+      <div class="switch">
+        <input type="checkbox" id="stackTrace" class="switch__input" ng-model="opts.stackTrace">
+        <label for="stackTrace" class="switch__label">Stack Trace</label>
+      </div>
     </div>
   </div>
 
@@ -35,7 +53,6 @@
       <div class="mb">
         <button class="btn btn--m btn--green btn--raised" lx-ripple ng-click="execRun()" ng-disabled="!input">Run IT!</button>
       </div>
-
     </div>
   </div>
 
