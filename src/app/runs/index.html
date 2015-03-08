@@ -39,7 +39,7 @@
     </div>
   </div>
 
-  <div flex-container="row" flex-gutter="24" ng-repeat="run in results" class="run">
+  <div flex-container="row" flex-gutter="24" ng-repeat="run in results.slice().reverse()" class="run">
     <div flex-item>
       <div class="card">
         <div class="p+">
