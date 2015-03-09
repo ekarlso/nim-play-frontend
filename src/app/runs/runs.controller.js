@@ -6,12 +6,13 @@ class RunCtrl {
     $scope.versions = {
       values: [
         {name: "devel"},
-        {name: "0.10.2"}
+        {name: "v0.10.2"}
       ]
     };
 
     $scope.cc = {
       values: [
+        {name: "gcc"},
         {name: "tcc"},
         {name: "ucc"}
       ]
