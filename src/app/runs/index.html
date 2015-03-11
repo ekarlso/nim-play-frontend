@@ -12,41 +12,18 @@
         <lx-select-choices>
           {{ $choice.name }}
         </lx-select-choices>
-        </lx-select>
-    </div>
-
-    <div flex-item="2">
-      <lx-select ng-model="selects.cc" placeholder="Select CC" choices="cc.values" floating-label>
-        <lx-select-selected>
-          {{ $selected.name }}
-        </lx-select-selected>
-
-        <lx-select-choices>
-            {{ $choice.name }}
-        </lx-select-choices>
       </lx-select>
     </div>
 
-    <div flex-item="2">
-      <div class="switch">
-        <input type="checkbox" id="checks" class="switch__input" ng-model="opts.checks">
-        <label for="checks" class="switch__label">Checks</label>
-      </div>
-
-      <div class="switch">
-        <input type="checkbox" id="threads" class="switch__input" ng-model="opts.threads">
-        <label for="threads" class="switch__label">Threads</label>
-      </div>
-
-      <div class="switch">
-        <input type="checkbox" id="stackTrace" class="switch__input" ng-model="opts.stackTrace">
-        <label for="stackTrace" class="switch__label">Stack Trace</label>
-      </div>
+    <div flex-item="8">
+      <lx-text-field label="Compiler options">
+        <input type="text" ng-model="compilerOptions"
+      </lx-text-field>
     </div>
   </div>
 
   <div flex-container="row" flex-gutter="24">
-    <div flex-item>
+    <div flex-item="10">
       <div ui-ace="{ onLoad : aceLoaded }" ng-model="input"></div>
 
       <br/>
@@ -56,7 +33,7 @@
     </div>
   </div>
 
-  <div flex-container="row" flex-gutter="24" ng-repeat="run in results.slice().reverse()" class="run">
+  <div flex-container="row" flex-gutter="8" ng-repeat="run in results.slice().reverse()" class="run">
     <div flex-item>
       <div class="card">
         <div class="p+">
@@ -67,10 +44,10 @@
       </div>
     </div>
 
-    <div flex-item  ng-show="run.output">
+    <div flex-item>
       <div class="card">
         <div class="p+">
-          <span class="fs-headline display-block">Output</span>
+          <span class="fs-headline">Output</span>
 
           <pre>{{run.output}}</pre>
         </div>

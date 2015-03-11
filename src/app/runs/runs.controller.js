@@ -10,43 +10,34 @@ class RunCtrl {
       ]
     };
 
-    $scope.cc = {
-      values: [
-        {name: "gcc"},
-        {name: "tcc"},
-        {name: "ucc"}
-      ]
-    };
-
     $scope.selects = {
-      version: $scope.versions.values[0],
-      cc: $scope.cc.values[0]
-    }
-
-    $scope.opts = {
-      checks: true,
-      threads: false,
-      stackTrace: false
+      version: $scope.versions.values[0]
     };
 
+    $scope.compilerOptions = "--cc:gcc";
     $scope.input = undefined;
 
     $scope.results = [];
+    $scope.running = false;
 
     $scope.execRun = function() {
-      var opts = $scope.opts;
-      opts.cc = $scope.selects.cc.name;
-
       var run = {
         version: $scope.selects.version.name,
         input: $scope.input,
-        compilerOptions: opts
+        compilerOptions: $scope.compilerOptions.split(" ")
       };
 
       $http.post('/runs', run).success(function(result) {
+        result.output = result.output.join("\n");
         $scope.results.push(result);
-      })
-    }
+      });
+    };
+
+    $scope.aceLoaded = function(_editor) {
+      var session = _editor.getSession();
+      session.setTabSize(4);
+      session.setUseSoftTabs(true);
+    };
   }
 }
 
