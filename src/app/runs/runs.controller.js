@@ -10,11 +10,13 @@ class RunCtrl {
 
     $http.get('/versions').success(function(result) {
       var versions = [];
-      angular.forEach(result, function(value, index) {
+      angular.forEach(result.available, function(value, index) {
         versions.push({name: value});
       });
+
       $scope.versions.values = versions;
       $scope.versions.loading = false;
+      $scope.selects.version = {name: result.default};
     })
 
     $scope.selects = {
