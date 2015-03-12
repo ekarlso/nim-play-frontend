@@ -4,7 +4,7 @@
   <div flex-container="row" flex-gutter="24">
 
     <div flex-item="2">
-      <lx-select ng-model="selects.version" placeholder="Select version" choices="versions.values" floating-label>
+      <lx-select ng-model="selects.version" placeholder="Select version" choices="versions.values" loading="{{ versions.loading }}" floating-label>
         <lx-select-selected>
           {{ $selected.name }}
         </lx-select-selected>

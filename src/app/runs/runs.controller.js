@@ -4,14 +4,21 @@
 class RunCtrl {
   constructor ($scope, $http) {
     $scope.versions = {
-      values: [
-        {name: "devel"},
-        {name: "v0.10.2"}
-      ]
+      values: [],
+      loading: true
     };
 
+    $http.get('/versions').success(function(result) {
+      var versions = [];
+      angular.forEach(result, function(value, index) {
+        versions.push({name: value});
+      });
+      $scope.versions.values = versions;
+      $scope.versions.loading = false;
+    })
+
     $scope.selects = {
-      version: $scope.versions.values[0]
+      version: undefined
     };
 
     $scope.compilerOptions = "--cc:gcc";
